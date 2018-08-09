@@ -6,21 +6,19 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class ServiceClass {
-	
-	
-	
-	private HashMap<Integer, AccountClass> hmap  = new HashMap<Integer, AccountClass>();
+
+	private HashMap<Integer, AccountClass> hmap = new HashMap<Integer, AccountClass>();
 	private int newID = 0;
-	
+
 	public void addNewAcc(String firstName, String lastName, String accountNumber) {
-		
-	AccountClass account = new AccountClass(firstName, lastName, accountNumber);
-	
-	hmap.put(newID, account);
+
+		AccountClass account = new AccountClass(firstName, lastName, accountNumber);
+
+		hmap.put(newID, account);
 
 		newID++;
 	}
-		
+
 	public HashMap<Integer, AccountClass> getHmap() {
 		return hmap;
 	}
@@ -30,11 +28,22 @@ public class ServiceClass {
 	}
 
 	public AccountClass getAnID(int newID) {
-		
+
 		return this.hmap.get(newID);
-		
-		
+
 	}
-	
+
+	public int getFirstNameCount(String firstName) {
+
+		int numberOfFirstNamesFound = 0;
+
+		for (AccountClass eachAccount : hmap.values()) {
+			if (eachAccount.getFirstName().equals(firstName)) {
+				numberOfFirstNamesFound++;
+			}
+		}
+		return numberOfFirstNamesFound;
+
+	}
 
 }
